@@ -1,0 +1,31 @@
+{% extends "recipes/base.html" %}
+{% block start %}
+{% comment %} {% load static %} {% endcomment %}
+<style>
+    img{
+        height: 100px;
+        width: 100px;
+    }
+</style>
+<div class="container mt-4">
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Update Recipe</h2>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Recipe Name</label>
+            <input type="text" class="form-control" value="{{recipes.recipeName}}" required placeholder="Enter Recipe Name" name="recipeName"/>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Recipe description</label>
+            <textarea name="recipeDescrip" value="" required cols="20" rows="5" class="form-control">{{recipes.recipeDescrip}}</textarea>
+        </div>
+        <div class="form-check">
+            <label for="exampleInputEmail1" class="form-label">Recipe Image</label>
+            <input type="file" value="" class="form-control" name="recipeImg" />{{recipes.recipeImg}}
+        </div>
+        <button type="submit" class="btn btn-primary success mt-3 ">Update</button>
+    </form>
+
+</div>
+
+{% endblock %}
