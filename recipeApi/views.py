@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
-
+from django.views.decorators.csrf  import csrf_exempt
 # Create your views here.
 
 
@@ -75,11 +75,12 @@ def loginPage(request):
             return redirect('/login')
         user = authenticate(username=username, password=password)
         if user is None:
+
             messages.error(request, 'Invalid password')
             return redirect('/login/')
         else:
             login(request, user)
-            return redirect('/recipes/')
+            return redirect('/login/')
     return render(request, 'recipes/login.html')
 
 
